@@ -1,4 +1,5 @@
-import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
+import { MapPin, Calendar, Settings2, ArrowRight } from "lucide-react";
+import { Button } from "../../../components/button";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -7,8 +8,8 @@ interface DestinationAndDateStepProps {
 }
 
 export function DestinationAndDateStep({
-  isGuestsInputOpen,
   closeGuestsInput,
+  isGuestsInputOpen,
   openGuestsInput,
 }: DestinationAndDateStepProps) {
   return (
@@ -16,40 +17,35 @@ export function DestinationAndDateStep({
       <div className="flex items-center gap-2 flex-1">
         <MapPin className="size-5 text-zinc-400" />
         <input
-          type="text"
-          placeholder="Para onde voce vai?"
-          className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
           disabled={isGuestsInputOpen}
+          type="text"
+          placeholder="Para onde você vai?"
+          className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
         />
       </div>
+
       <div className="flex items-center gap-2">
         <Calendar className="size-5 text-zinc-400" />
         <input
+          disabled={isGuestsInputOpen}
           type="text"
           placeholder="Quando?"
           className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none"
-          disabled={isGuestsInputOpen}
         />
       </div>
 
       <div className="w-px h-6 bg-zinc-800" />
 
       {isGuestsInputOpen ? (
-        <button
-          className="bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700 "
-          onClick={closeGuestsInput}
-        >
+        <Button onClick={closeGuestsInput} variant="secondary">
           Alterar local/data
           <Settings2 className="size-5" />
-        </button>
+        </Button>
       ) : (
-        <button
-          className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400 "
-          onClick={openGuestsInput}
-        >
+        <Button onClick={openGuestsInput}>
           Continuar
           <ArrowRight className="size-5" />
-        </button>
+        </Button>
       )}
     </div>
   );
